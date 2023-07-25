@@ -1,7 +1,7 @@
 <template>
     <el-menu active-text-color="#ffd04b" background-color="#304156" class="el-menu-vertical-demo"
         :default-active="defaultActive" text-color="#fff" router unique-opened :collapse="!$store.getters.siderType">
-        <el-sub-menu :index="item.id" v-for="(item, index) in menusList" :key="item.id">
+        <el-sub-menu :index="item.id" v-for="(item, index) in menusList.data" :key="item.id">
             <template #title>
                 <el-icon>
                     <component :is="iconList[index]"></component>
@@ -34,6 +34,7 @@ const menusList = ref([])
 // 获取左侧菜单栏的数据
 const initMenuList = async () => {
     menusList.value = await menuList()
+    console.log(menusList.value)
 }
 
 // 路由重定向

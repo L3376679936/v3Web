@@ -30,9 +30,9 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response) => {
     const { data, meta } = response.data
-    
+    console.log(response)
     if (meta.status === 200 || meta.status === 201) {
-      return data
+      return response.data
     } else {
       // 如果请求失败，在这里直接弹出失败信息
       ElMessage.error(meta.msg)
@@ -40,6 +40,7 @@ service.interceptors.response.use(
     }
   },
   (error) => {
+    console.dir(error)
     error.response && ElMessage.error(error.response.data)
     return Promise.reject(new Error(error.response.data))
   }

@@ -104,9 +104,10 @@ const submitForm = () => {
               account: form.value.username,
               password: form.value.password
             }
-            login(params).then(res=>{
-              console.log(res,'res')
-            })
+            // login(params).then(res=>{
+            //   console.log(res,'res')
+            // })
+            store.dispatch('app/login',params)
           } else {
             ElMessage.error('验证码错误')
           }
@@ -131,7 +132,7 @@ const draw = (show_num) => {
     show_nums = show_num;
     // console.log(this.show_num,'this.show_num')
     var x = 10 + i * 12; //文字在canvas上的x坐标
-    var y = 30 + Math.random() ; //文字在canvas上的y坐标
+    var y = 27 + Math.random() ; //文字在canvas上的y坐标
     context.font = "bold 36px 微软雅黑";
     context.translate(x, y);
     context.rotate(deg);

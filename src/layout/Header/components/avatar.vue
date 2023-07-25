@@ -1,7 +1,8 @@
 <template>
     <el-dropdown>
-        <span class="el-dropdown-link">
-            <el-avatar shape="square" :size="40" :src="imgUrl" />
+        <span style="display: inline-block;" class="el-dropdown-link">
+        <span class="username" >{{store.state.app.userInfo.account}}</span>
+            <el-avatar shape="circle" :size="40" :src="imgUrl" />
         </span>
         <template #dropdown>
             <el-dropdown-menu>
@@ -25,5 +26,14 @@ const logout = () => {
 <style scoped>
 ::v-deep .el-dropdown-menu__item {
     white-space: nowrap;
+}
+.username{
+    display: inline-block;
+    /* line-height: 40px; */
+    /* padding-bottom: 20px; */
+    transform: translateY(-70%);
+    margin-right: 15px;
+    font-size: 18px;
+    color:skyblue;
 }
 </style>
