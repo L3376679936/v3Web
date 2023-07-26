@@ -1,7 +1,12 @@
 <template>
-  <router-view />
+    <el-config-provider :locale="zhCn">
+      <router-view />
+    </el-config-provider>
 </template>
-
+<script setup >
+import { ElConfigProvider } from "element-plus"
+import zhCn from "element-plus/lib/locale/lang/zh-cn"
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -23,4 +28,24 @@ nav {
     }
   }
 }
+
+// 路由切换动画
+/* fade-transform */
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all 0.5s;
+}
+
+.fade-transform-enter {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+
+
 </style>

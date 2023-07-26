@@ -1,0 +1,21 @@
+// 路由切换动画
+/* fade-transform */
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all 0.5s;
+}
+
+.fade-transform-enter {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+// 进度条颜色
+#nprogress .bar {
+  background: #00b7e4; //自定义颜色
+}

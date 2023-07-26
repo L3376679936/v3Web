@@ -8,7 +8,18 @@
                 <Header />
             </el-header>
             <el-main>
-                <router-view></router-view>
+                <!-- <transition name="fade-transform" mode="out-in">
+                    <router-view v-show="show" />
+                </transition> -->
+                <router-view v-slot="{ Component }">
+                    <transition name="fade-transform" mode="out-in" >
+                        <div>
+                            <component :is="Component" />
+
+                        </div>
+                    </transition>
+                </router-view>
+
             </el-main>
         </el-container>
     </el-container>
@@ -17,7 +28,7 @@
 <script setup>
 import Menu from "./Menu";
 import Header from "./Header";
-import { computed } from "vue"
+import { computed, ref } from "vue"
 import { useStore } from "vuex"
 
 const store = useStore()
@@ -27,6 +38,7 @@ const hideSideBarWidth = '67px'
 const asideWidth = computed(() => {
     return store.getters.siderType ? sideBarWidth : hideSideBarWidth
 })
+
 
 
 </script>

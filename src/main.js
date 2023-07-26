@@ -10,6 +10,7 @@ import '@/router/permission'
 import * as ELIcons from '@element-plus/icons-vue'
 import i18n from '@/i18n'
 
+
 const app = createApp(App)
 for (const iconName in ELIcons) {
   app.component(iconName, ELIcons[iconName])
