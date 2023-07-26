@@ -34,7 +34,7 @@ const menusList = ref([])
 // 获取左侧菜单栏的数据
 const initMenuList = async () => {
     menusList.value = await menuList()
-    console.log(menusList.value)
+    // console.log(menusList.value)
 }
 
 // 路由重定向
