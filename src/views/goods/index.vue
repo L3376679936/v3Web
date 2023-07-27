@@ -53,17 +53,51 @@
       </template>
     </el-table-column>
   </el-table>
-  <el-pagination
-      v-model:current-page="currentPage4"
-      v-model:page-size="pageSize4"
-      :page-sizes="[100, 200, 300, 400]"
-      :small="small"
-      :background="background"
+
+  <!-- <el-auto-resizer>
+    <template #default="{ height }">
+      <el-table
+        :data="tableData"
+        stripe
+        border
+        style="width: 100%"
+        :height="height"
+        v-loading="loading"
+      >
+        <el-table-column
+          v-for="item in columnList"
+          :key="item.prop"
+          :prop="item.prop"
+          :label="item.label"
+          :formatter="item.formatter ? item.formatter : null"
+          :width="item.width"
+          align="center"
+        />
+        <el-table-column label="操作" align="center" width="300">
+          <template #default="scope">
+            <el-button type="primary" @click="handleEdit(scope.row)">编辑</el-button>
+            <el-button type="danger" @click="handleDelete(scope.row)">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </template>
+  </el-auto-resizer> -->
+
+
+
+
+<div style="height: 50px;display:flex; justify-content: center;" >  <el-pagination
+      v-model:current-page="pagination.currentPage"
+      v-model:page-size="pagination.pageSize"
+      :page-sizes="[10, 20, 50, 100]"
+      small
+      background
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400"
+      :total="totalNumber"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-    />
+    /></div>
+
 </template>
 
 <script setup>
@@ -78,17 +112,22 @@ const goodsForm = ref({
   unit_priceStart:undefined,
   unit_priceEnd:undefined
 })
-
-let currentPage4 = ref(1)
-let pageSize4 = ref(100)
-let small = ref(false)
-let background = ref(false)
+const pagination = ref({
+  currentPage: 1,
+  pageSize: 10,
+})
+let totalNumber = ref(0)
 
 const handleSizeChange = (val) => {
+  pagination.value.pageSize= val
+  loading.value = true
+  getGoodsLists()
   console.log(`${val} items per page`)
 }
 const handleCurrentChange = (val) => {
+  loading.value = true
   console.log(`current page: ${val}`)
+  getGoodsLists()
 }
 
 let productList = ref([])
@@ -123,9 +162,10 @@ const columnList = ref([
 
 // 商品列表（表格）
 const getGoodsLists = () => {
-  getGoodsList(goodsForm.value).then(res => {
+  getGoodsList({...goodsForm.value,...pagination.value}).then(res => {
     tableData.value = res.data
     loading.value = false
+    totalNumber = res.total
   })
 }
 // 商品名字下拉框

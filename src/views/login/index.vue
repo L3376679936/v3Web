@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <el-form ref="formRef" :model="form" class="login-form" :rules="rules">
-      <div class="title-container">
+      <div class="title-container"  >
         <h3 class="title">{{ $t('login.title') }}</h3>
       </div>
       <!-- 用户名 -->
@@ -18,7 +18,7 @@
       <el-form-item prop="verifyCode">
         <el-input style="width: 60%;float: left;" v-model="form.verifyCode" placeholder="请输入验证码" ></el-input>
         <!-- <span class="verifyCodeSpan" > -->
-        <canvas style="display: inline-block; width: 35%; border-radius: 3px; background:#fff;height: 40px; margin-left: 4%;" id="canvas"
+        <canvas style=" width: 35%; border-radius: 3px; background:#fff;height: 40px; margin-left: 4%;" id="canvas"
           @click="draw"></canvas>
         <!-- </span> -->
 
@@ -201,6 +201,12 @@ $dark_gray: #889aa4;
 $light_gray: #eee;
 $cursor: #fff;
 
+
+::v-deep .el-input__wrapper{
+  background: none;
+  border: 0px solid rgba(255,255,255,0);
+  box-shadow: none;
+}
 .login-container {
   min-height: 100%;
   width: 100%;
@@ -225,7 +231,7 @@ $cursor: #fff;
     }
 
     ::v-deep .el-input {
-      display: inline-block;
+      
       height: 47px;
       width: 85%;
 
@@ -283,7 +289,7 @@ $cursor: #fff;
       position: absolute;
       top: 4px;
       right: 0;
-      background-color: white;
+      // background-color: white;
       font-size: 22px;
       padding: 4px;
       border-radius: 4px;
