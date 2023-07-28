@@ -37,10 +37,9 @@ export default {
       return new Promise((resolve, reject) => {
         loginApi(userInfo)
           .then((res) => {
-            console.log(res,'res')
+            // console.log(res,'res')
             // console.log(res.token)
             commit('userInfo',res.data)
-            
               ElMessage.success('登录成功')
               commit('setToken', res.token) //把拿到的token给mutation
               setTokenTime() //设置登录时间

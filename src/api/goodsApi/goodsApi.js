@@ -26,3 +26,22 @@ export const delGoods =(data) =>{
         data
     })
 }
+
+// 编辑商品
+export const editGoods =(data) =>{
+    return request({
+        url:baseURL+ '/isEdit',
+        method:'post',
+        data
+    })
+}
+
+
+// 新增商品
+export const addGoods =(data) =>{
+    return request({
+        url:baseURL+ '/addGoods',
+        method:'post',
+        data
+    })
+}
